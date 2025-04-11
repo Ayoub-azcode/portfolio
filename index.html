@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Ayyoub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6cfd8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-link {
+    position: relative;
+    transition: transform 0.2s ease, font-size 0.2s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0%;
+    background-color: #2563eb;
+    transition: width 0.3s ease-in-out;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  .nav-link:active {
+    transform: scale(1.1);
+    font-size: 1.1rem;
+  }
+  .scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .animate-fade {
+    animation: fadeIn 0.3s ease-out;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      });
+      document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('animate-fade');
+      });
+
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+
+  <!-- Navbar -->
+  <header class="fixed w-full bg-gradient-to-r from-purple-100 to-blue-100 text-gray-800 shadow z-20 transition duration-300">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="images/ma photo.jpg" alt="Moi" class="w-24 h-24 rounded-full">
+        <span class="text-xl font-bold text-blue-600 tracking-wide hover:text-purple-600 transition hidden md:inline">Ayyoub</span>
+      </a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Accueil</a>
+        <a href="#projets" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Projets</a>
+        <a href="#competences" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Compétences</a>
+        <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">Contact</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none hover:text-blue-600 transition">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 px-4 py-4 animate-fade shadow-md rounded-b-xl">
+      <a href="#" class="block py-2 text-gray-700 hover:text-blue-600 font-medium transition">Accueil</a>
+      <a href="#projets" class="block py-2 text-gray-700 hover:text-blue-600 font-medium transition">Projets</a>
+      <a href="#competences" class="block py-2 text-gray-700 hover:text-blue-600 font-medium transition">Compétences</a>
+      <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 font-medium transition">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 pt-24 fade-in">
+    <div class="text-center text-white">
+      <h1 class="text-5xl font-bold mb-4">Salut, moi c'est Ayyoub</h1>
+      <p class="text-xl mb-6">Développeur web & créateur de contenus</p>
+      <a href="#projets" class="bg-white text-blue-600 px-6 py-3 rounded-full shadow hover:bg-gray-100 transition">Voir mes projets</a>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section class="py-16 px-6 bg-white fade-in">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">À propos de moi</h2>
+      <br>
+      <p class="text-lg text-gray-700">
+        Développeur web passionné, je conçois des interfaces modernes et dynamiques en utilisant HTML, CSS, JavaScript, TypeScript et des frameworks tels que React, Angular, Vue.js et Tailwind CSS. J’ai également une bonne maîtrise de PHP, Node.js, Python, MySQL ainsi que des CMS comme WordPress et Shopify. Grâce à Git, je collabore efficacement en équipe et versionne proprement mes projets. Je suis toujours en quête de nouvelles technologies pour créer des solutions performantes, élégantes et adaptées aux besoins de chaque client.
+      </p>
+    </div>
+    <div class="text-center mt-12">
+        <a href="docs/CV.Ayyoub IZGUER .pdf" target="_blank"
+           class="inline-block bg-[#b74b4b] text-white px-6 py-3 rounded-full text-lg font-semibold shadow hover:bg-red-700 transition duration-300">
+          📎 Voir mon CV en ligne
+        </a>
+      </div>
+      
+  </section>
+
+  <!-- Compétences -->
+  <section id="competences" class="py-16 px-6 bg-gray-100 fade-in">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-10">Mes compétences</h2>
+      <br>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center">
+        <div class="flex flex-col items-center"><i class="fab fa-html5 fa-3x text-orange-500"></i><p class="mt-2">HTML5</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-css3-alt fa-3x text-blue-500"></i><p class="mt-2">CSS3</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-js fa-3x text-yellow-400"></i><p class="mt-2">JavaScript</p></div>
+        <div class="flex flex-col items-center"><i class="fas fa-database fa-3x text-blue-800"></i><p class="mt-2">MySQL</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-php fa-3x text-indigo-600"></i><p class="mt-2">PHP</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-react fa-3x text-blue-400"></i><p class="mt-2">React.js</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-angular fa-3x text-red-600"></i><p class="mt-2">Angular</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-vuejs fa-3x text-green-600"></i><p class="mt-2">Vue.js</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-js-square fa-3x text-blue-500"></i><p class="mt-2">TypeScript</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-python fa-3x text-yellow-600"></i><p class="mt-2">Python</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-node fa-3x text-green-600"></i><p class="mt-2">Node.js</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-sass fa-3x text-pink-500"></i><p class="mt-2">SASS</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-wordpress fa-3x text-blue-600"></i><p class="mt-2">WordPress</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-shopify fa-3x text-green-500"></i><p class="mt-2">Shopify</p></div>
+        <div class="flex flex-col items-center"><i class="fab fa-git-alt fa-3x text-orange-700"></i><p class="mt-2">Git</p></div>
+        <div class="flex flex-col items-center"><i class="fas fa-cube fa-3x text-black"></i><p class="mt-2">Next.js</p></div>
+      </div>
+    </div>
+  </section>
+  
+  <!--Services-->
+  <section class="py-16 px-6 bg-white fade-in">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">Ce que je propose</h2>
+      <br>
+      <div class="grid md:grid-cols-3 gap-8 text-left">
+        <div>
+          <h3 class="text-xl font-bold mb-2">Sites vitrines</h3>
+          <p>Création de sites modernes, responsives et optimisés pour tous les écrans, adaptés aux indépendants et aux entreprises.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Applications web</h3>
+          <p>Développement d’applications dynamiques et performantes avec React, Node.js, Angular, Firebase et plus encore.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Applications mobiles</h3>
+          <p>Conception d’apps Android & iOS avec React Native ou Flutter, avec une UX intuitive et un design soigné.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Design & Branding</h3>
+          <p>Création d'identité visuelle, maquettes web, e-books et supports marketing avec Canva, Figma, HTML/CSS.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">E-commerce</h3>
+          <p>Création et configuration de boutiques Shopify ou WordPress (WooCommerce), intégration de paiements, UX optimisée.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-2">Freelance tech</h3>
+          <p>Collaboration en freelance sur vos projets digitaux : code, déploiement, SEO, conseils techniques & accompagnement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <!-- Projets -->
+  <section id="projets" class="py-16 px-6 bg-white fade-in">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-10">Mes projets</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Projet Portfolio</h3>
+          <p class="text-gray-600">Un site portfolio simple et responsive avec Tailwind CSS.</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl shadow p-6"> 
+          <h3 class="text-xl font-bold mb-2">Application de prise de rendez-vous</h3>
+          <p class="text-gray-600">Développement d’une application web pour réserver des rendez-vous en ligne (coiffeur, médecin, etc.), avec notifications et gestion du planning. Stack : Vue.js & Firebase.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Design e-book</h3>
+          <p class="text-gray-600">Création d'un e-book en PDF interactif et élégant avec Canva & HTML.</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Site vitrine d’un resto marocain</h3>
+          <p class="text-gray-600">Création d’un site moderne pour un restaurant à Marseille, avec menu en ligne et formulaire de réservation.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Application mobile de recettes</h3>
+          <p class="text-gray-600">App mobile React Native avec recettes marocaines, vidéos intégrées et filtres personnalisés.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Plateforme de soutien scolaire</h3>
+          <p class="text-gray-600">Application web pour suivre les élèves, organiser les séances et communiquer avec les parents. Stack : Angular & Firebase.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Mini boutique e-commerce</h3>
+          <p class="text-gray-600">Développement d’un site e-commerce simple pour produits artisanaux marocains. Stack : WordPress + WooCommerce.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">Dashboard pour coiffeur à Aix</h3>
+          <p class="text-gray-600">Création d’un tableau de bord de gestion de RDV et de clients pour un salon de coiffure local.</p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl shadow p-6">
+          <h3 class="text-xl font-bold mb-2">App météo locale avec API</h3>
+          <p class="text-gray-600">Application météo avec données en temps réel via OpenWeatherMap API. Interface épurée en Tailwind CSS.</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-6 bg-gray-100 fade-in">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-6">Me contacter</h2>
+      <br>
+      <p class="text-lg text-gray-700 mb-8">Envie de collaborer ou juste discuter ? Envoie-moi un message :</p>
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+        <input type="text" name="name" placeholder="Ton nom" required class="w-full px-4 py-3 border border-gray-300 rounded-md" />
+        <input type="email" name="email" placeholder="Ton email" required class="w-full px-4 py-3 border border-gray-300 rounded-md" />
+        <textarea name="message" rows="5" placeholder="Ton message..." required class="w-full px-4 py-3 border border-gray-300 rounded-md"></textarea>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Bouton retour en haut -->
+  <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+    class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition" aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-gray-500 text-sm bg-white">
+    <div class="mb-4 flex justify-center space-x-6">
+      <a href="https://github.com/ayyoub" class="text-gray-600 hover:text-black" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+      <a href="https://www.linkedin.com/in/ayyoub-izguer-ba66b0181/" class="text-gray-600 hover:text-blue-700" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+      <a href="https://x.com/Ayoubazgar" class="text-gray-600 hover:text-blue-500" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+      <a href="https://wa.me/33765225549" class="text-gray-600 hover:text-green-500" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+      <a href="https://www.youtube.com/@Linformaticien-2025" class="text-gray-600 hover:text-red-600" target="_blank"><i class="fab fa-youtube fa-lg"></i></a>
+    </div>
+    &copy; 2025 Ayyoub. Tous droits réservés.
+  </footer>
+</body>
+</html>
